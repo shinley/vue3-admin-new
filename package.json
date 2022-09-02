@@ -7,7 +7,7 @@
     "build": "vite build",
     "preview": "vite preview --port 4173",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
-    "mock": "json-server --middlewares ./mock/middleware.js --watch ./mock/db.json"
+    "mock": "node ./mock/mockserver.js"
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.0.9",
