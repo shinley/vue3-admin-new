@@ -1,4 +1,5 @@
 import login from '@/api/sys'
+import md5 from 'md5'
 
 export default {
     namespaced: true, 
@@ -11,6 +12,10 @@ export default {
                 login({
                     username,
                     password: md5(password)
+                }).then(data => {
+
+                }).catch(err => {
+                    reject()
                 })
             })
         }
