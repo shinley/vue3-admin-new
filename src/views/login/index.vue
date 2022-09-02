@@ -1,24 +1,22 @@
 <template>
     <div class="login-container">
-        <el-form class="login-form">
+        <el-form class="login-form" :model="longinForm" :rules = "loginRules">
             <div class="title-container">
                <h3 class="title">用户登录</h3>
             </div>
-            <el-form-item>
+            <el-form-item prop="username">
                 <span class="svg-container">
-                    <el-icon>
-                        <Avatar />
-                    </el-icon>
+                    <svg-icon name="user" size="1.1em"/>
                 </span>
-                <el-input placeholder="username" name="username" type="text"></el-input>
+                <el-input placeholder="username" name="username" v-model="longinForm.username" type="text"></el-input>
             </el-form-item>
-            <el-form-item>
+            <el-form-item prop="password">
                 <span class="svg-container">
-                    <svg-icon  name="lock-closed-outline"></svg-icon>
+                    <svg-icon  name="password"></svg-icon>
                 </span>
-                <el-input placeholder="password" name="password" type="text"></el-input>
+                <el-input placeholder="password" name="password" v-model="longinForm.password" type="text"></el-input>
                 <span class="show-pwd">
-                    <svg-icon name="eye-open" />
+                    <svg-icon name="eye-open" @click="switchEye"/>
                 </span>
             </el-form-item>
             <!--登录按钮-->
@@ -28,7 +26,37 @@
     </div>
 </template>
 <script setup>
-import {} from 'vue'
+import {ref} from 'vue'
+import {validatePassword} from './rules'
+// 表单数据源
+const longinForm = ref({
+    username: "admin",
+    password: "123456"
+})
+
+// 验证规则
+const loginRules = ref({
+    username: [
+        {
+            required: true,
+            trigger: 'blur',
+            message: '用户名不能为空'
+        }
+    ],
+    password: [
+        {
+            required: true,
+            trigger: 'blur',
+            validator: validatePassword()
+        }
+    ]
+})
+
+
+
+const switchEye = ()=>{
+    console.log("切换密码显示和关闭")
+}
 
 </script>
 <style lang="scss" scoped>
