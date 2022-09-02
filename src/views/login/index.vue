@@ -14,9 +14,9 @@
                 <span class="svg-container">
                     <svg-icon  name="password"></svg-icon>
                 </span>
-                <el-input placeholder="password" name="password" v-model="longinForm.password" type="text"></el-input>
+                <el-input placeholder="password" name="password" v-model="longinForm.password" :type="passwordType"></el-input>
                 <span class="show-pwd">
-                    <svg-icon name="eye-open" @click="switchEye"/>
+                    <svg-icon :name="passwordType === 'password'? 'eye-close':'eye-open'" @click="switchEye"/>
                 </span>
             </el-form-item>
             <!--登录按钮-->
@@ -53,9 +53,15 @@ const loginRules = ref({
 })
 
 
-
+// 处理密码框文本显示
+const passwordType = ref('password')
 const switchEye = ()=>{
-    console.log("切换密码显示和关闭")
+    if (passwordType.value === 'password') {
+        // 使用ref声明的数据， 在script中使用时， 需要加 .value 来获取具体的值,  在template中使用的时候，不需要
+        passwordType.value = 'text'
+    } else {
+        passwordType.value = 'password'
+    }
 }
 
 </script>
