@@ -6,14 +6,15 @@ export default {
     state:  () => {},
     mutations: {},
     actions: {
-        login(context, userInfo) {
+        lg(context, userInfo) {
+            console.log("登录action")
             const  {username, password} = userInfo
             return new Promise((resolve, reject) => {
                 login({
                     username,
                     password: md5(password)
                 }).then(data => {
-
+                    resolve()
                 }).catch(err => {
                     reject()
                 })

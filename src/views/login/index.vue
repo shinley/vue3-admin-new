@@ -1,6 +1,6 @@
 <template>
     <div class="login-container">
-        <el-form class="login-form" :model="longinForm" :rules = "loginRules">
+        <el-form class="login-form" ref="loginFormRef" :model="longinForm" :rules = "loginRules">
             <div class="title-container">
                <h3 class="title">用户登录</h3>
             </div>
@@ -20,7 +20,11 @@
                 </span>
             </el-form-item>
             <!--登录按钮-->
-            <el-button type="primary" style="width: 100%; margin-bottom: 30%">登录</el-button>
+            <el-button 
+                type="primary" 
+                style="width: 100%; margin-bottom: 30%" 
+                @click="handleLogin" 
+                :loading="loading">登录</el-button>
 
         </el-form>
     </div>
@@ -28,6 +32,7 @@
 <script setup>
 import {ref} from 'vue'
 import {validatePassword} from './rules'
+import {useStore} from 'vuex'
 // 表单数据源
 const longinForm = ref({
     username: "admin",
@@ -52,16 +57,39 @@ const loginRules = ref({
     ]
 })
 
-
 // 处理密码框文本显示
 const passwordType = ref('password')
 const switchEye = ()=>{
     if (passwordType.value === 'password') {
-        // 使用ref声明的数据， 在script中使用时， 需要加 .value 来获取具体的值,  在template中使用的时候，不需要
+        // 使用ref声明的数据， 在script中使用时， 需要加 .value 来获取具体的值,  
+        // 在template中使用的时候，不需要
         passwordType.value = 'text'
     } else {
         passwordType.value = 'password'
     }
+}
+// 处理登录
+const loading = ref(false)
+const store = useStore()
+// 获取表单实例
+const loginFormRef = ref(null)
+const handleLogin = () => {
+    // 进行表单校验
+    loginFormRef.value.validate(valid => {
+        if(!valid) return
+        loading.value = true
+        // 触发登录动作
+        console.log("触发登录")
+        store.dispatch('user/lg', longinForm.value)
+        .then(()=>{
+            loading.value = false
+            // 登录后的处理
+        }).catch(err=>{
+            loading.value = false
+        })
+    })
+    
+
 }
 
 </script>
