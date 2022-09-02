@@ -2,7 +2,7 @@ const path = require('path')
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router(path.join(__dirname, 'db.json'))
-const middlewares = jsonServer.defaults()
+const middlewares = jsonServer.defaults({static:path.join(__dirname, 'middleware.js')})
 
 server.use(middlewares)
 
@@ -12,7 +12,7 @@ server.use(jsonServer.bodyParser)
 server.use(router)
 
 router.render = (req, res) => {
-  if (req.method === 'POST') {
+  if (req.method === 'POST' || req.method === 'PATCH') {
     res.json({
       "code": 200,
       "data": "",
