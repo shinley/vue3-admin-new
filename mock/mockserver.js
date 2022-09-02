@@ -2,16 +2,24 @@ const path = require('path')
 const jsonServer = require('json-server')
 const server = jsonServer.create()
 const router = jsonServer.router(path.join(__dirname, 'db.json'))
-// const middlewares = jsonServer.defaults({static:path.join(__dirname, 'middleware.js')})
 
 const middlewares = jsonServer.defaults()
 
 server.use(middlewares)
-
 server.use(jsonServer.bodyParser)
 
-// Use default router
-server.use(router)
+
+server.use((req, res, next) => {
+  const pth = req.path
+  // 在此处根据路径中是否包含 update 和 del 来修改请求方式
+  console.log(pth)
+  if (req.method === 'POST') { // add your authorization logic here
+    req.method = 'PATCH'
+    next() // continue to JSON Server router
+  } else {
+    res.sendStatus(401)
+  }
+ })
 
 router.render = (req, res) => {
   if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT'||req.method === 'POST'||req.method === 'DELETE') {
@@ -29,6 +37,8 @@ router.render = (req, res) => {
   }
 }
 
+// Use default router
+server.use(router)
 
 server.listen(3000, () => {
   console.log('JSON Server is running')
