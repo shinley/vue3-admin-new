@@ -15,10 +15,8 @@ server.use((req, res, next) => {
   console.log(pth)
   if (req.method === 'POST') { // add your authorization logic here
     req.method = 'PATCH'
-    next() // continue to JSON Server router
-  } else {
-    res.sendStatus(401)
-  }
+  } 
+  next() // continue to JSON Server router
  })
 
 router.render = (req, res) => {
@@ -37,9 +35,12 @@ router.render = (req, res) => {
   }
 }
 
-// Use default router
-server.use(router)
+server.use(jsonServer.rewriter({
+  '/api/*': '/$1',
+  "/posts\\?id=:id": "/posts/:id"
+}))
 
+server.use(router)
 server.listen(3000, () => {
   console.log('JSON Server is running')
 })
