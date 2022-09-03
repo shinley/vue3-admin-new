@@ -7,12 +7,12 @@ import { createRouter, createWebHistory } from 'vue-router'
 const publicRoutes = [
   {
     path: '/login',
-    component: ()=> import('../views/login/index.vue')
+    component: ()=> import('@/views/login/index.vue')
   },
   {
     path: '/',
     name: 'home',
-    component: () => import('../layout/index.vue')
+    component: () => import('@/layout/index.vue')
   },
   {
     path: '/about',

@@ -5,8 +5,11 @@ import  { TOKEN } from  '@/constant/index'
 
 export default {
     namespaced: true, 
-    state:  () => {
+    state: {
         token: getItem(TOKEN) || ''
+    },
+    getters: {
+        token: state => state.token
     },
     mutations: {
         setToken(state, token) {
@@ -15,7 +18,6 @@ export default {
         }
     },
     actions: {
-      
         lg(context, userInfo) {
             const  {username, password} = userInfo
             return new Promise((resolve, reject) => {
@@ -23,7 +25,6 @@ export default {
                     username,
                     password: md5(password)
                 }).then(data => {
-                    
                     this.commit('user/setToken', data.token)
                     resolve()
                 }).catch(err => {

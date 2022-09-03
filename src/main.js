@@ -12,6 +12,9 @@ import './styles/index.scss'
 import 'virtual:svg-icons-register'
 import SvgIcon from '@/components/SvgIcon/index.vue'
 
+// 导入路由监权
+import './permission'
+
 
 const app = createApp(App)
 app.use(store)
