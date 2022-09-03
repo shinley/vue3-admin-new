@@ -32,7 +32,9 @@
 <script setup>
 import {ref} from 'vue'
 import {validatePassword} from './rules'
-import {useStore} from 'vuex'
+import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
+const router = useRouter()
 // 表单数据源
 const longinForm = ref({
     username: "admin",
@@ -84,12 +86,12 @@ const handleLogin = () => {
         .then(()=>{
             loading.value = false
             // 登录后的处理
+            console.log("触发跳转")
+            router.push({name: 'home', params: {id: 1}})
         }).catch(err=>{
             loading.value = false
         })
     })
-    
-
 }
 
 </script>

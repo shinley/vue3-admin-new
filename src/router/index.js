@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+
 
 /**
  * 公开路由表
@@ -12,7 +12,7 @@ const publicRoutes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
+    component: () => import('../layout/index.vue')
   },
   {
     path: '/about',

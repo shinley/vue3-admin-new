@@ -15,6 +15,7 @@ export default {
         }
     },
     actions: {
+      
         lg(context, userInfo) {
             const  {username, password} = userInfo
             return new Promise((resolve, reject) => {
@@ -22,7 +23,7 @@ export default {
                     username,
                     password: md5(password)
                 }).then(data => {
-                    console.log(data)
+                    
                     this.commit('user/setToken', data.token)
                     resolve()
                 }).catch(err => {
