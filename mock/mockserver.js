@@ -31,17 +31,30 @@ server.use((req, res, next) => {
   next() // continue to JSON Server router
  })
 
+
+
 router.render = (req, res) => {
   if (req.method === 'POST' || req.method === 'PATCH' || req.method === 'PUT'||req.method === 'POST'||req.method === 'DELETE') {
-    res.jsonp({
-      "code": 200,
-      "data": "",
-      "message": "successs"
-    }) 
+   // 登录一般用post, 此处单独处理
+   if (req.url.indexOf('/login') != -1) {      
+      res.status(200).json({
+        "code": 200,
+        "data":{
+          "token": "8fa22e88-f6ab-4a4b-930a-a5e62c4c74e8"
+        },
+        "message": "successs"
+      })
+   } else {
+      res.jsonp({
+        "code": 200,
+        "data": "",
+        "message": "successs"
+      }) 
+   }
+
   }else {
     // 此处判断是否分页
     const splitPage = res.getHeaders()["x-split-page"]
-
     const currPage = parseInt(res.getHeaders()["x-page"])
     const pageSize = parseInt(res.getHeaders()["x-size"])
     // 如果分页
@@ -84,6 +97,8 @@ server.use(jsonServer.rewriter({
 }))
 
 server.use(router)
-server.listen(3000, () => {
-  console.log('JSON Server is running')
+
+let port = 8000
+server.listen(port, () => {
+  console.log('JSON Server is running on ' + port)
 })
