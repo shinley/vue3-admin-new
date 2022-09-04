@@ -9,10 +9,10 @@ const service = axios.create({
 })
 
 // 请求拦截器
-service. interceptors.request.use((config)=>{
+service.interceptors.request.use((config)=>{
     const userStore = useUserStore()
     // 统一注入token
-    console.log("获取token:", userStore.getters)
+    console.log("获取token:", userStore.token)
     if (userStore.token) {
         config.headers.Authorization = `Bearer ${userStore.token}`
     }

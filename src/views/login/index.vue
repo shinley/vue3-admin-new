@@ -33,9 +33,10 @@
 import {ref} from 'vue'
 import {validatePassword} from './rules'
 import { useUserStore } from '@/stores/user'
+import { useCounterStore } from '@/stores/counter'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-
+const counterStroe = useCounterStore()
 const userStore = useUserStore()
 // 表单数据源
 const longinForm = ref({

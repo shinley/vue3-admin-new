@@ -21,6 +21,7 @@ app.use(ElementPlus)
 app.component('svg-icon', SvgIcon)
 app.use(router)
 
-usePermission(pinia)
+// 由于useXXXStroe 方法不能全局调用，所以此处使用方法
+usePermission()
 
 app.mount('#app')

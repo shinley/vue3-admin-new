@@ -6,7 +6,8 @@ const whiteList = ['/login']
 
 
 
-export const usePermission = (pinia) => {
+export const usePermission = () => {
+    // 此方法不能全局调用，所以导出usePermission
     const userStore = useUserStore()
     /**
      * 路由前置守卫
@@ -15,7 +16,6 @@ export const usePermission = (pinia) => {
      * @param {*} next 是否要去 
      */
     router.beforeEach(async (to, from, next) => {
-        console.log('store', userStore.token)
         
         if(userStore.token) {
             // 1. 用户已登录， 则不允许时入login
@@ -24,7 +24,7 @@ export const usePermission = (pinia) => {
             } else {
                 // 判断用户资料是否存在， 如果不存在，则获取用户信息
                 if (!userStore.hasUserInfo) {
-                await userStore.dispatch('getUInfo')
+                await userStore.getUInfo()
                 }
                 next()
             }
@@ -37,6 +37,4 @@ export const usePermission = (pinia) => {
             }
         }
     })
-
-
 }
