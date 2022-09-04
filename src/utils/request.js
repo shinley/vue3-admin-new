@@ -30,6 +30,7 @@ service.interceptors.request.use((config)=>{
 
 //响应拦截器
 service.interceptors.response.use(response => {
+    const userStore = useUserStore()
     const {code, data, message, } =  response.data
     // 判断当前请求是否成功
     // 成功返回解析后的数据
@@ -42,6 +43,11 @@ service.interceptors.response.use(response => {
     }
     
 }, error=>{
+    if (error.response && error.response.data && error.response.data.code === 401) {
+        // token 超时
+        userStore.logout()
+    }
+
     ElMessage.error(error.message)
     return Promise.reject(error)
 })
