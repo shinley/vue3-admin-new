@@ -19,20 +19,20 @@
 </template>
 
 <script setup>
-import {} from "vue";
-import Sidebar from "./components/Sidebar/index.vue";
-import Navbar from "./components/Navbar.vue";
-import AppMain from "./components/AppMain.vue";
+import {} from 'vue'
+import Sidebar from './components/Sidebar/index.vue'
+import Navbar from './components/Navbar.vue'
+import AppMain from './components/AppMain.vue'
 
 // 导入scss变量， 必须要在文件中加 module
-import variables from "@/styles/variables.module.scss";
+import variables from '@/styles/variables.module.scss'
 
-console.log(variables.menuBg);
+console.log(variables.menuBg)
 </script>
 
 <style lang="scss" scoped>
-@import "@/styles/mixin.scss";
-@import "@/styles/variables.module.scss";
+@import '@/styles/mixin.scss';
+@import '@/styles/variables.module.scss';
 
 .app-wrapper {
   @include clearfix;

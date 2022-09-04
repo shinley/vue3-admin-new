@@ -8,7 +8,7 @@
     <!--子集menu-->
     <el-sub-menu index="1">
       <template #title>
-        <svg-icon name="location" color="yellow"></svg-icon>
+        <svg-icon name="location" color="yellow" size="20"></svg-icon>
         <span>导航一</span>
       </template>
       <el-menu-item index="1-1">选项一</el-menu-item>
@@ -17,7 +17,7 @@
 
     <!--具体菜单项-->
     <el-menu-item index="2">
-      <svg-icon name="location" color="#FFF"></svg-icon>
+      <svg-icon name="location" color="#FFF" size="20"></svg-icon>
       <template #title>导航四</template>
     </el-menu-item>
   </el-menu>
