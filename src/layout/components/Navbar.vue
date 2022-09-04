@@ -4,7 +4,7 @@
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar shape="square" :size="40" :src="avatarSrc"></el-avatar>
-          <svg-icon name="tools" color="#333"></svg-icon>
+          <svg-icon name="tools" size="1.1em" color="#333"></svg-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
