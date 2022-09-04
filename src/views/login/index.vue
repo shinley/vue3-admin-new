@@ -84,7 +84,7 @@ const handleLogin = () => {
         loading.value = true
         // 触发登录动作
         console.log("触发登录")
-        userStore.lg(longinForm.value)
+        userStore.login(longinForm.value)
         .then(()=>{
             loading.value = false
             // 登录后的处理

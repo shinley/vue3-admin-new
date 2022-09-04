@@ -24,7 +24,7 @@ export const useUserStore = defineStore({
     },
     actions: {
         // 登录action
-        lg(userInfo) {
+        login(userInfo) {
             const  {username, password} = userInfo
             return new Promise((resolve, reject) => {
             login({username, password: md5(password)})
