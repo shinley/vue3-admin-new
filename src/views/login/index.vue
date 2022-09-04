@@ -32,9 +32,11 @@
 <script setup>
 import {ref} from 'vue'
 import {validatePassword} from './rules'
-import { useStore } from 'vuex'
+import { useUserStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
 const router = useRouter()
+
+const userStore = useUserStore()
 // 表单数据源
 const longinForm = ref({
     username: "admin",
@@ -72,7 +74,6 @@ const switchEye = ()=>{
 }
 // 处理登录
 const loading = ref(false)
-const store = useStore()
 // 获取表单实例
 const loginFormRef = ref(null)
 const handleLogin = () => {
@@ -82,7 +83,7 @@ const handleLogin = () => {
         loading.value = true
         // 触发登录动作
         console.log("触发登录")
-        store.dispatch('user/lg', longinForm.value)
+        userStore.lg(longinForm.value)
         .then(()=>{
             loading.value = false
             // 登录后的处理

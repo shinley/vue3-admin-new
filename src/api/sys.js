@@ -3,7 +3,8 @@ import request from '@/utils/request'
 /**
  * 登录
  */
- const login = data => {
+ export const login = data => {
+    console.log("发请求")
     return request({
       url: '/sys/login',
       method: 'POST',
@@ -11,4 +12,12 @@ import request from '@/utils/request'
     })
   }
 
-  export default login
+  /**
+   * 获取用户信息
+   */
+  export const getUserInfo = () => {
+    return request({
+      url: '/sys/profile',
+      method: 'POST',
+    })
+  }
