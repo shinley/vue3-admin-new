@@ -14,7 +14,7 @@
                         <a target="_blank" href="#">
                             <el-dropdown-item>课程主页</el-dropdown-item>
                         </a>
-                        <el-dropdown-item divided>退出登录</el-dropdown-item>
+                        <el-dropdown-item divided @click="logout">退出登录</el-dropdown-item>
                     </el-dropdown-menu>
                 </template>
             </el-dropdown>
@@ -25,7 +25,13 @@
 <script setup>
     import { useUserStore } from '../../stores/user';
     const store = useUserStore()
+
+    // 头像图片地址
     const avatarSrc = store.userInfo.avatar
+
+    const logout = () => {
+        store.logout()
+    }
 </script>
 
 <style lang="scss" scoped>

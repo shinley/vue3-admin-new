@@ -1,8 +1,10 @@
 import { login, getUserInfo } from '@/api/sys'
 import md5 from 'md5'
-import {getItem, setItem} from '@/utils/storage'
+import {getItem, setItem, removeAllItem} from '@/utils/storage'
 import {TOKEN} from '@/constant'
 import { defineStore } from 'pinia'
+
+import router from '../router'
 
 export const useUserStore = defineStore({
     id: 'user',
@@ -47,6 +49,18 @@ export const useUserStore = defineStore({
             const res = await getUserInfo()
             this.userInfo = res
             return res
+        },
+
+        // 退出登录
+        logout() {
+            this.token = ''
+            this.userInfo = {}
+            removeAllItem()
+            // TODO 清理权限相关配置
+
+            // 跳转到登录页
+            router.push('/login')
+
         }
     }
 })
