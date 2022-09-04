@@ -18,6 +18,6 @@ import request from '@/utils/request'
   export const getUserInfo = () => {
     return request({
       url: '/sys/profile',
-      method: 'POST',
+      method: 'GET',
     })
   }
