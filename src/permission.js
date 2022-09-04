@@ -24,7 +24,7 @@ export const usePermission = () => {
             } else {
                 // 判断用户资料是否存在， 如果不存在，则获取用户信息
                 if (!userStore.hasUserInfo) {
-                    await userStore.getUInfo()
+                    await userStore.getUserInfo()
                 }
                 next()
             }

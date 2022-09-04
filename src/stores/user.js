@@ -43,9 +43,10 @@ export const useUserStore = defineStore({
         },
 
         // 获取用户信息action
-        async getUInfo() {
+        async getUserInfo() {
             const res = await getUserInfo()
             this.userInfo = res
+            return res
         }
     }
 })
