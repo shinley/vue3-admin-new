@@ -10,11 +10,11 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
+import { computed } from 'vue'
 const props = defineProps({
   prefix: {
     type: String,
-    default: "icon",
+    default: 'icon',
   },
   name: {
     type: String,
@@ -22,12 +22,12 @@ const props = defineProps({
   },
   color: {
     type: String,
-    default: "#FFF",
+    default: '#FFF',
   },
   size: {
     type: String,
-    default: "1em",
+    default: '1em',
   },
-});
-const symbolId = computed(() => `#${props.prefix}-${props.name}`);
+})
+const symbolId = computed(() => `#${props.prefix}-${props.name}`)
 </script>

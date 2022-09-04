@@ -4,37 +4,37 @@
 export const setItem = (key, value) => {
   // value 分为两种情况
   // 1. 基本数据类型
-  // 2. 复杂数据类划f
-  if (typeof value === "object") {
-    value = JSON.stringify(value);
+  // 2. 复杂数据类划
+  if (typeof value === 'object') {
+    value = JSON.stringify(value)
   }
 
-  window.localStorage.setItem(key, value);
-};
+  window.localStorage.setItem(key, value)
+}
 
 /**
  * 获取数据
  */
 export const getItem = (key) => {
-  const data = window.localStorage.getItem(key);
+  const data = window.localStorage.getItem(key)
   // 不好判断json格式的数据， 所以转换失败，就直接返回
   try {
-    return JSON.parse(data);
+    return JSON.parse(data)
   } catch (err) {
-    return data;
+    return data
   }
-};
+}
 
 /**
  * 删除指定数据
  */
 export const removeItem = (key) => {
-  window.localStorage.removeItem(key);
-};
+  window.localStorage.removeItem(key)
+}
 
 /**
  * 删除所有数据
  */
 export const removeAllItem = () => {
-  window.localStorage.clear();
-};
+  window.localStorage.clear()
+}

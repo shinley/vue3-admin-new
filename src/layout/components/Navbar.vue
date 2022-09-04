@@ -25,15 +25,15 @@
 </template>
 
 <script setup>
-import { useUserStore } from "../../stores/user";
-const store = useUserStore();
+import { useUserStore } from '../../stores/user'
+const store = useUserStore()
 
 // 头像图片地址
-const avatarSrc = store.userInfo.avatar;
+const avatarSrc = store.userInfo.avatar
 
 const logout = () => {
-  store.logout();
-};
+  store.logout()
+}
 </script>
 
 <style lang="scss" scoped>
