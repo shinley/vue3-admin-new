@@ -3,8 +3,8 @@ import md5 from 'md5'
 import {getItem, setItem, removeAllItem} from '@/utils/storage'
 import {TOKEN} from '@/constant'
 import { defineStore } from 'pinia'
-
 import router from '../router'
+import { setTimeStamp } from '@/utils/auth'
 
 export const useUserStore = defineStore({
     id: 'user',
@@ -35,6 +35,8 @@ export const useUserStore = defineStore({
                 this.token = data.token
                 // 写入token
                 setItem(TOKEN, data.token)
+                // 保存登录时间
+                setTimeStamp()
                 resolve()
               })
               .catch(err => {

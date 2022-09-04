@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import { useUserStore } from '@/stores/user'
+import { isCheckTimeout } from '@/utils/auth'
 
 
 const service = axios.create({
@@ -14,6 +15,11 @@ service.interceptors.request.use((config)=>{
     // 统一注入token
     console.log("获取token:", userStore.token)
     if (userStore.token) {
+        if (isCheckTimeout()) {
+            // 超时，执行退出操作
+            userStore.logout()
+            return Promise.reject(new Error('token 失效'))
+        }
         config.headers.Authorization = `Bearer ${userStore.token}`
     }
     return config
