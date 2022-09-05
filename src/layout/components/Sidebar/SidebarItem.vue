@@ -5,7 +5,7 @@
     </template>
     <!--循环渲染-->
     <el-menu-item v-for="item in route.children" :key="item.path" :route="item">
-      <menu-item :title="item.meta.title" :icon="route.meta.icon"></menu-item>
+      <menu-item :title="item.meta.title" :icon="item.meta.icon"></menu-item>
     </el-menu-item>
   </el-sub-menu>
 

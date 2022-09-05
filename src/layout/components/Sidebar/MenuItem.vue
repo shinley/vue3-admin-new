@@ -2,7 +2,10 @@
   <div class="menu-item">
     <!--element icon-->
     <!--非element icon-->
-    <svg-icon :name="icon"></svg-icon>
+    <span class="icon">
+      <svg-icon class="svgicon" :name="icon"></svg-icon>
+    </span>
+
     <span>{{ title }}</span>
     <!--文本-->
   </div>
