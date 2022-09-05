@@ -1,4 +1,4 @@
-import path from 'path'
+import path from 'path-browserify'
 
 /**
  * 所有的子集路由
@@ -61,7 +61,7 @@ export const generateMenus = (routes, bashPath = '') => {
     }
     // 存在children && 存在meta
     if (!isNull(item.children)) {
-      route.children.push(...generateMenus(iteem.children, route.path))
+      route.children.push(...generateMenus(item.children, route.path))
     }
   })
   return result
