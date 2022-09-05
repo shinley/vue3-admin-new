@@ -49,71 +49,72 @@
   </div>
 </template>
 <script setup>
-import { ref } from "vue";
-import { validatePassword } from "./rules";
-import { useUserStore } from "@/stores/user";
-import { useRouter } from "vue-router";
-const router = useRouter();
-const userStore = useUserStore();
+import { ref } from 'vue'
+import { validatePassword } from './rules'
+import { useUserStore } from '@/stores/user'
+import { useRouter } from 'vue-router'
+const router = useRouter()
+const userStore = useUserStore()
 // 表单数据源
 const longinForm = ref({
-  username: "admin",
-  password: "123456",
-});
+  username: 'admin',
+  password: '123456',
+})
 
 // 验证规则
 const loginRules = ref({
   username: [
     {
       required: true,
-      trigger: "blur",
-      message: "用户名不能为空",
+      trigger: 'blur',
+      message: '用户名不能为空',
     },
   ],
   password: [
     {
       required: true,
-      trigger: "blur",
+      trigger: 'blur',
       validator: validatePassword(),
     },
   ],
-});
+})
 
 // 处理密码框文本显示
-const passwordType = ref("password");
+const passwordType = ref('password')
 const switchEye = () => {
-  if (passwordType.value === "password") {
+  if (passwordType.value === 'password') {
     // 使用ref声明的数据， 在script中使用时， 需要加 .value 来获取具体的值,
     // 在template中使用的时候，不需要
-    passwordType.value = "text";
+    passwordType.value = 'text'
   } else {
-    passwordType.value = "password";
+    passwordType.value = 'password'
   }
-};
+}
 // 处理登录
-const loading = ref(false);
+const loading = ref(false)
 // 获取表单实例
-const loginFormRef = ref(null);
+const loginFormRef = ref(null)
 const handleLogin = () => {
   // 进行表单校验
   loginFormRef.value.validate((valid) => {
-    if (!valid) return;
-    loading.value = true;
+    if (!valid) return
+    loading.value = true
     // 触发登录动作
-    console.log("触发登录");
+    console.log('触发登录')
     userStore
       .login(longinForm.value)
       .then(() => {
-        loading.value = false;
+        loading.value = false
         // 登录后的处理
-        console.log("触发跳转");
-        router.push({ name: "home", params: { id: 1 } });
+        console.log('触发跳转')
+        router.push('/')
       })
       .catch((err) => {
-        loading.value = false;
-      });
-  });
-};
+        console.log(err)
+        loading.value = false
+      })
+  })
+}
 </script>
 <style lang="scss" scoped>
 $bg: #2d3a4b;

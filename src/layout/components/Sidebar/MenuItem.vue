@@ -4,12 +4,10 @@
     <!--非element icon-->
     <svg-icon :name="icon"></svg-icon>
     <span>{{ title }}</span>
-
     <!--文本-->
   </div>
 </template>
 <script setup>
-import SvgIcon from '../../../components/SvgIcon/index.vue'
 defineProps({
   title: {
     type: String,

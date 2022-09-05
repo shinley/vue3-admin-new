@@ -11,7 +11,7 @@ const privateRoutes = [
     component: Layout,
     meta: {
       title: 'user',
-      icon: 'user',
+      icon: 'personnel',
     },
     children: [
       {
@@ -20,7 +20,7 @@ const privateRoutes = [
         component: () => import('@/views/user-manage/index.vue'),
         meta: {
           title: 'userManage',
-          icon: 'location',
+          icon: 'personnel-manage',
         },
       },
       {
@@ -73,7 +73,7 @@ const privateRoutes = [
         component: () => import('@/views/article-ranking/index.vue'),
         meta: {
           title: 'articleRangking',
-          icon: 'alocation',
+          icon: 'articl-ranking',
         },
       },
       {
@@ -90,7 +90,7 @@ const privateRoutes = [
         component: () => import('@/views/article-create/index.vue'),
         meta: {
           title: 'articleCreate',
-          icon: 'location',
+          icon: 'article-create',
         },
       },
       {
@@ -116,7 +116,7 @@ const publicRoutes = [
   {
     path: '/',
     redirect: '/profile',
-    name: 'home',
+    name: 'profile',
     component: Layout,
     children: [
       // 个人中心
@@ -126,7 +126,7 @@ const publicRoutes = [
         component: () => import('@/views/profile/index.vue'),
         meta: {
           title: 'profile',
-          icon: 'user',
+          icon: 'el-icon-user',
         },
       },
       // 404
