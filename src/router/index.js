@@ -126,7 +126,7 @@ const publicRoutes = [
         component: () => import('@/views/profile/index.vue'),
         meta: {
           title: 'profile',
-          icon: 'el-icon-user',
+          icon: 'user-center',
         },
       },
       // 404
