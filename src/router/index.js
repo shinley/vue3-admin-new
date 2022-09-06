@@ -64,7 +64,7 @@ const privateRoutes = [
     redirect: '/article/ranking',
     meta: {
       title: 'article',
-      icon: 'article',
+      icon: 'article-ranking',
     },
     children: [
       {
@@ -73,7 +73,7 @@ const privateRoutes = [
         component: () => import('@/views/article-ranking/index.vue'),
         meta: {
           title: 'articleRangking',
-          icon: 'articl-ranking',
+          icon: 'article-ranking',
         },
       },
       {
