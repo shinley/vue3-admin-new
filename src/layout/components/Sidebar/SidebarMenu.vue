@@ -1,5 +1,6 @@
 <template>
   <el-menu
+    :collapse="!sidebarOpened"
     :default-active="activeMenu"
     :uniqueOpened="true"
     :background-color="backgroundColor"
@@ -20,12 +21,19 @@ import { useRouter, useRoute } from 'vue-router'
 import { filterRoutes, generateMenus } from '@/utils/route'
 import SidebarItem from './SidebarItem.vue'
 import { useCssVarStore } from '@/stores/cssVar'
+import { useAppStateStore } from '@/stores/app'
+
+const appStore = useAppStateStore()
 const cssStore = useCssVarStore()
 const router = useRouter()
 
 const backgroundColor = cssStore.cssVar.menuBg
 const textColor = cssStore.cssVar.menuText
 const activeTextColor = cssStore.cssVar.menuActiveText
+
+let sidebarOpened = computed(() => {
+  return appStore.sidebarOpened
+})
 
 const route = useRoute()
 // 默认激活项

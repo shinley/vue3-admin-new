@@ -22,4 +22,9 @@ defineProps({
   },
 })
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.svgicon {
+  width: 1.3em;
+  height: 1.3em;
+}
+</style>

@@ -1,5 +1,8 @@
 <template>
-  <div class="app-wrapper">
+  <div
+    class="app-wrapper"
+    :class="[sidebarOpened ? 'openSidebar' : 'hideSidebar']"
+  >
     <!--左侧menu-->
     <sidebar
       id="guide-sidebar"
@@ -19,13 +22,21 @@
 </template>
 
 <script setup>
-import {} from 'vue'
+import { computed } from 'vue'
 import Sidebar from './components/Sidebar/index.vue'
 import Navbar from './components/Navbar.vue'
 import AppMain from './components/AppMain.vue'
 
 // 导入scss变量， 必须要在文件中加 module
 import variables from '@/styles/variables.module.scss'
+
+import { useAppStateStore } from '@/stores/app'
+
+const appStore = useAppStateStore()
+
+const sidebarOpened = computed(() => {
+  return appStore.sidebarOpened
+})
 
 console.log(variables.menuBg)
 </script>
@@ -47,5 +58,10 @@ console.log(variables.menuBg)
   right: 0;
   z-index: 9;
   width: calc(100% - #{$sideBarWidth});
+  transition: width 0.28s;
+}
+
+.hideSidebar .fixed-header {
+  width: calc(100% - #{$hideSideBarWidth});
 }
 </style>
