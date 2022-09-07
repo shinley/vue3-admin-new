@@ -14,7 +14,7 @@
 </template>
 <script setup>
 import { watch, ref } from 'vue'
-import { useRoute } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import { useCssVarStore } from '../../stores/cssVar'
 
 const cssStore = useCssVarStore()
@@ -30,7 +30,6 @@ const getBreadcrumData = () => {
 
 // 监听路由变化
 const route = useRoute()
-
 watch(
   route,
   () => {
@@ -40,6 +39,12 @@ watch(
     immediate: true, // 进入组件触发一次
   }
 )
+
+// 跳转点击事件
+const router = useRouter()
+const onLinkClick = (item) => {
+  router.push(item.path)
+}
 </script>
 <style lang="scss" scoped>
 .breadcrumb {
