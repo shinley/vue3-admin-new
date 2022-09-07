@@ -2,6 +2,7 @@
   <div class="navbar">
     <!--汉堡-->
     <hamburger class="hamburger-container" />
+    <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
@@ -29,6 +30,7 @@
 <script setup>
 import hamburger from '@/components/hamburger/index.vue'
 import { useUserStore } from '../../stores/user'
+import Breadcrumb from '@/components/Breadcrumb/index.vue'
 const store = useUserStore()
 
 // 头像图片地址
@@ -76,6 +78,9 @@ const logout = () => {
         }
       }
     }
+  }
+  .breadcrumb-container {
+    float: left;
   }
 }
 </style>
