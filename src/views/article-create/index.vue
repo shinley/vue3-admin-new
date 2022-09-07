@@ -1,5 +1,8 @@
 <template>
-  <div class="">创建文章</div>
+  <div class="">
+    创建文章<br />
+    {{ $t('msg.test') }}
+  </div>
 </template>
 
 <script setup>
