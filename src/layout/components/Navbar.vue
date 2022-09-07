@@ -4,6 +4,7 @@
     <hamburger class="hamburger-container" />
     <Breadcrumb class="breadcrumb-container" />
     <div class="right-menu">
+      <lang-select effect="dark" class="right-menu-item hover-effect" />
       <el-dropdown class="avatar-container" trigger="click">
         <div class="avatar-wrapper">
           <el-avatar shape="square" :size="40" :src="avatarSrc"></el-avatar>
@@ -31,6 +32,7 @@
 import hamburger from '@/components/hamburger/index.vue'
 import { useUserStore } from '../../stores/user'
 import Breadcrumb from '@/components/Breadcrumb/index.vue'
+import LangSelect from '../../components/LangSelect/index.vue'
 const store = useUserStore()
 
 // 头像图片地址
@@ -67,6 +69,17 @@ const logout = () => {
     float: right;
     padding-right: 16px;
 
+    ::v-deep(.right-menu-item) {
+      display: inline-block;
+      padding: 0 12px 0 0;
+      font-size: 24px;
+      color: #5a5e66;
+      vertical-align: text-bottom;
+      &.hover-effect {
+        cursor: pointer;
+      }
+    }
+
     ::v-deep(.avatar-container) {
       cursor: pointer;
       .avatar-wrapper {
@@ -74,7 +87,6 @@ const logout = () => {
         position: relative;
         .el-avatar {
           --el-avatar-background-color: none;
-          margin-right: 12px;
         }
       }
     }
