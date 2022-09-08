@@ -6,11 +6,12 @@
       <svg-icon class="svgicon" :name="icon"></svg-icon>
     </span>
 
-    <span>{{ title }}</span>
+    <span>{{ generateTitle(title) }}</span>
     <!--文本-->
   </div>
 </template>
 <script setup>
+import { generateTitle } from '@/utils/i18n'
 defineProps({
   title: {
     type: String,

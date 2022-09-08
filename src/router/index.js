@@ -72,7 +72,7 @@ const privateRoutes = [
         name: 'articleRanking',
         component: () => import('@/views/article-ranking/index.vue'),
         meta: {
-          title: 'articleRangking',
+          title: 'articleRanking',
           icon: 'article-ranking',
         },
       },

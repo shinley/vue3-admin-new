@@ -48,7 +48,7 @@ const handleSetLanguage = (lang) => {
   // 修改全局状态
   appStore.setLanguage(lang)
   // 提未
-  ElMessage.success('更新成功')
+  ElMessage.success(i18n.t('msg.toast.switchLangSuccess'))
 }
 </script>
 <style lang="scss" scoped></style>

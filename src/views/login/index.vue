@@ -51,13 +51,13 @@
   </div>
 </template>
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '@/stores/user'
-import { useAppStateStore } from '@/stores/app'
 import { useRouter } from 'vue-router'
 
 import LangSelect from '@/components/LangSelect/index.vue'
+import { useI18n } from 'vue-i18n'
 
 const router = useRouter()
 const userStore = useUserStore()
@@ -67,13 +67,14 @@ const longinForm = ref({
   password: '123456',
 })
 
+const i18n = useI18n()
 // 验证规则
 const loginRules = ref({
   username: [
     {
       required: true,
       trigger: 'blur',
-      message: '用户名不能为空',
+      message: i18n.t('msg.login.usernameRule'),
     },
   ],
   password: [
