@@ -46,7 +46,7 @@ const handleSetLanguage = (lang) => {
   // 切换i18n的locale
   i18n.locale.value = lang
   // 修改全局状态
-  appStore.language = lang
+  appStore.setLanguage(lang)
   // 提未
   ElMessage.success('更新成功')
 }

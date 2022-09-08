@@ -15,6 +15,9 @@ export const useAppStateStore = defineStore({
     setLanguage(lang) {
       setItem(LANG, lang)
       this.language = lang
+      console.log('设置值：', lang)
+      console.log('缓存值 ', this.language)
+      console.log('持久化值 ', getItem(LANG))
     },
   },
 })

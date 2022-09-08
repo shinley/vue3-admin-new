@@ -7,7 +7,8 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">用户登录</h3>
+        <h3 class="title">{{ $t('msg.login.title') }}</h3>
+        <lang-select class="lang-select" />
       </div>
       <el-form-item prop="username">
         <span class="svg-container">
@@ -43,16 +44,21 @@
         style="width: 100%; margin-bottom: 30%"
         @click="handleLogin"
         :loading="loading"
-        >登录</el-button
+        >{{ $t('msg.login.loginBtn') }}</el-button
       >
+      <div class="tips" v-html="$t('msg.login.desc')"></div>
     </el-form>
   </div>
 </template>
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { validatePassword } from './rules'
 import { useUserStore } from '@/stores/user'
+import { useAppStateStore } from '@/stores/app'
 import { useRouter } from 'vue-router'
+
+import LangSelect from '@/components/LangSelect/index.vue'
+
 const router = useRouter()
 const userStore = useUserStore()
 // 表单数据源
@@ -192,5 +198,22 @@ $cursor: #fff;
     cursor: pointer;
     user-select: none;
   }
+}
+
+.tips {
+  font-size: 16px;
+  color: white;
+  line-height: 24px;
+}
+
+.lang-select {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  background-color: #fff;
+  font-size: 22px;
+  padding: 4px;
+  border-radius: 4px;
+  cursor: pointer;
 }
 </style>
