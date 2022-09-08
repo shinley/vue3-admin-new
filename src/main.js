@@ -12,13 +12,15 @@ import SvgIcon from '@/components/SvgIcon/index.vue'
 import i18n from './i18n'
 
 const app = createApp(App)
+
 const pinia = createPinia()
-installElementPlus(app)
 app.use(pinia)
 app.component('svg-icon', SvgIcon)
 app.use(router)
 app.use(i18n)
 
+// 用到了状态管理，要在注册pinia之后
+installElementPlus(app)
 // 由于useXXXStroe 方法不能全局调用，所以此处使用方法
 usePermission()
 
